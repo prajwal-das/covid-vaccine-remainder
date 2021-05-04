@@ -15,12 +15,11 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>com.iit.uml</groupId>
-            <artifactId>ui</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.iit.uml</groupId>-->
+<!--            <artifactId>ui</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -49,6 +48,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- send email -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
     </dependencies>
 
 
