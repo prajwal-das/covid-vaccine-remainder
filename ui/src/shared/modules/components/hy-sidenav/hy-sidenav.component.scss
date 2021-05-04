@@ -1,0 +1,17 @@
+@import 'src/assets/themes/hy-variables';
+
+.home-page {
+  .hy-sidenav-container {
+    height: 100%;
+
+    .sidenav {
+      width: 15em;
+      border: none;
+    }
+
+    .hy-sidenav-content {
+      height: 100vh;
+
+    }
+  }
+}

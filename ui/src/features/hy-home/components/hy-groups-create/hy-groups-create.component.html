@@ -1,0 +1,27 @@
+<div>
+  <h2>Create Group</h2>
+  <br>
+  <br>
+  <br>
+  <div>
+
+    <div class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="group.title">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <textarea [(ngModel)]="group.description" matInput placeholder="Ex. This is my post "></textarea>
+      </mat-form-field>
+
+      <a mat-raised-button color="primary" (click)="createGroup()">
+        <mat-icon class="icon" aria-hidden="false">post_add</mat-icon>
+        Create Group
+      </a>
+    </div>
+
+
+  </div>
+</div>

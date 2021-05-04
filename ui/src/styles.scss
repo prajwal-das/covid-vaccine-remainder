@@ -1,0 +1,81 @@
+@import 'assets/themes/hy-variables';
+@import "hy-theme";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Quicksand, sans-serif;
+}
+
+.hy-btn-margin {
+  padding-left: 1em;
+}
+
+.hy-cursor-point {
+  cursor: pointer;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.spacer-action {
+  flex: 1 auto;
+}
+
+.mat-menu-panel {
+  min-height: 0 !important;
+}
+
+.hy-discussion-card {
+  .mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content {
+    width: fit-content;
+    padding: 0.2em 0.7em;
+    border-radius: 100px;
+  }
+}
+
+.mat-card-actions {
+  .mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content {
+    padding: 0em 0em !important;
+  }
+}
+
+.hy-search-field {
+  .mat-form-field-wrapper {
+    padding-bottom: 0px;
+  }
+
+  .mat-form-field-flex {
+    border-radius: 100px !important;
+    border: none !important;
+  }
+
+  .mat-form-field-infix {
+    border: none !important;
+  }
+
+  .mat-form-field-label-wrapper {
+    display: none !important;
+  }
+  .mat-form-field-underline {
+    display: none !important;
+  }
+}
+
+.hy-logo {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.hy-log-gap {
+  //padding-left: 1.4em;
+  padding-top: 0.4em;
+}
+
+.hy-content {
+  padding: 2em;
+}

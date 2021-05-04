@@ -1,0 +1,29 @@
+<div class="home-page">
+  <mat-sidenav-container class="hy-sidenav-container">
+
+    <mat-sidenav class="sidenav" fixedInViewport
+                 [attr.role]="'navigation'"
+                 [mode]="'side'"
+                 [opened]="sideBarOpen">
+
+      <mat-toolbar class="mat-toolbar-content">
+        <button style="font-size: 1.3em;margin: 1em 0.2em 0.5em 0em" mat-icon-button (click)="sideBarOpen = !sideBarOpen"><mat-icon>menu</mat-icon></button>
+        <div *ngIf="sideBarOpen"><ng-container *ngTemplateOutlet="logo"></ng-container></div>
+      </mat-toolbar>
+      <ng-container *ngTemplateOutlet="sidebar"></ng-container>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="hy-sidenav-content">
+      <mat-toolbar class="mat-toolbar-content">
+        <ng-container *ngIf="!sideBarOpen">
+          <button style="font-size: 1.3em;margin: 1em 0.2em 0.5em 0em" mat-icon-button (click)="sideBarOpen = !sideBarOpen"><mat-icon>menu</mat-icon></button>
+          <ng-container *ngTemplateOutlet="logo"></ng-container>
+        </ng-container>
+        <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+      </mat-toolbar>
+      <div style="margin-left: 1em">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,19 @@
+<div>
+  <h2>Posts</h2>
+  <a class="hy-left-btns" mat-raised-button routerLink="/create/post"  color="primary">
+    <mat-icon class="icon" aria-hidden="false">post_add</mat-icon>
+    Create Post
+  </a>
+
+  <button (click)="getAllPosts()" mat-button color="primary">
+    <mat-icon >refresh</mat-icon>
+  </button>
+  <br>
+  <br>
+  <br>
+  <div class="friends-list">
+    <div style="margin: 0.5em 0;" *ngFor="let post of posts">
+      <hy-post-card [opened]="post.id === openId" [post]="post" (commentClicked)="commentClicked($event)"></hy-post-card>
+    </div>
+  </div>
+</div>

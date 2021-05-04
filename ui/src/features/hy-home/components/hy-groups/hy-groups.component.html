@@ -1,0 +1,20 @@
+<div>
+  <h2>Groups</h2>
+
+  <button class="hy-left-btns" mat-stroked-button routerLink="/groups/create">
+    <mat-icon class="icon" aria-hidden="false">post_add</mat-icon>
+    Create Group
+  </button>
+  <button style="margin-left: 1em" class="hy-left-btns" mat-stroked-button routerLink="/groups/graph" color="accent">
+    <mat-icon class="icon"  aria-hidden="false">analytics</mat-icon>
+    Group Analytics
+  </button>
+  <div class="groups">
+    <div class="groups-list">
+      <hy-groups-list (selectGroup)="groupSelectChange($event)"></hy-groups-list>
+    </div>
+    <div class="groups-chat">
+      <hy-group-chat [group]="selectedGroup" [chats]="chats"></hy-group-chat>
+    </div>
+  </div>
+</div>

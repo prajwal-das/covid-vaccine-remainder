@@ -1,0 +1,12 @@
+<b [matMenuTriggerFor]="userInfoMenu" ng-click="true"
+   class="hy-at-username hy-cursor-point">@{{username}}</b>
+
+<mat-menu #userInfoMenu="matMenu">
+  <div class="hy-at-details">
+    <hy-avatar [src]="user?.picture"></hy-avatar>
+    <div class="hy-p-details">
+      <b>@{{username}}</b>
+      <h5 class="email">{{user?.email}}</h5>
+    </div>
+  </div>
+</mat-menu>

@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="scrolling-list">
+    <div class="chat-msg" *ngFor="let msg of chats">
+      <div *ngIf="currUserId == msg.sentBy.id" class="filler"></div>
+      <div class="chat-content">
+        <div *ngIf="currUserId != msg.sentBy.id" style="margin-bottom:0.3em;font-size: 0.8em; font-weight: bold; border-bottom: 1px grey solid">
+          {{msg.sentBy.name?msg.sentBy.name:msg.sentBy.email}}
+        </div>
+        {{msg.chat}}
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; margin-left: 1em">
+    <mat-form-field appearance="legacy" class="text-area-msg">
+      <textarea rows="1" [(ngModel)]="message" matInput placeholder="message"></textarea>
+    </mat-form-field>
+    <button (click)="postChat()" mat-icon-button color="primary">
+      <mat-icon style="font-size: 3em; margin-top: 0.45em">send</mat-icon>
+    </button>
+  </div>
+</div>

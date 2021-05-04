@@ -1,0 +1,27 @@
+<div class="hy-side-content">
+
+  <div class="hy-top-discussions">
+    <a class="hy-left-btns" mat-button routerLink="/home" [routerLinkActive]="['side-link-active']" color="primary">
+      <mat-icon class="icon" aria-hidden="false">home</mat-icon>
+      Home
+    </a>
+    <a class="hy-left-btns" mat-button routerLink="/friends" [routerLinkActive]="['side-link-active']" color="primary">
+      <mat-icon class="icon" aria-hidden="false">forum</mat-icon>
+      Connections
+    </a>
+
+    <a class="hy-left-btns" mat-button routerLink="/groups" [routerLinkActive]="['side-link-active']" color="primary">
+      <mat-icon class="icon" aria-hidden="false">mark_chat_unread</mat-icon>
+      Groups
+    </a>
+
+    <mat-divider class="hy-cat-divider"></mat-divider>
+
+    <a *ngFor="let category of categories" routerLinkActive (click)="searchByCategory(category.title)"
+       class="hy-left-btns"
+       mat-button>
+      <mat-icon class="icon" [ngStyle]="{'color': category.color}" aria-hidden="false">label</mat-icon>
+      {{category.title}}
+    </a>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div style="width: 100%; min-height: 90vh">
+  <ngx-graph class="chart-container"
+             [links]="graph.links"
+             [nodes]="graph.nodes"
+             [panningEnabled]="true"
+             [legend]="false"
+             [curve]="curve"
+             [update$]="update$"
+             [draggingEnabled]="true"
+             [layout]="layout">
+
+    <ng-template #nodeTemplate let-node>
+      <svg:g (dblclick)="doubleClick(node)" class="node" ngx-tooltip [tooltipPlacement]="'top'" [tooltipType]="'tooltip'"
+             tooltipTitle="asdvsdvsdvsdvsdv">
+        <svg [attr.width]="node.nodeType == 'group'?node.width + 20:node.width" [attr.height]="node.height">
+          <circle
+            [attr.cx]="node.nodeType == 'group'?32:22"
+            [attr.cy]="node.height / 2"
+            [attr.r]="node.nodeType == 'group'?32:22"
+            [attr.fill]="node.nodeType == 'group'?'#9AD4A9':'#6EA1F6'">
+            <title>{{node.label}}</title>
+
+          </circle>
+        </svg>
+        <svg:text font-size="0.7em" alignment-baseline="middle" dy=".1em" [attr.x]="node.nodeType == 'group'?15:1" [attr.y]="node.height / 2">
+          {{ node.label?(node.label?.length > 6) ? (node.label | slice:0:6).trim() + '..' : (node.label):".." }}
+        </svg:text>
+      </svg:g>
+    </ng-template>
+
+  </ngx-graph>
+</div>

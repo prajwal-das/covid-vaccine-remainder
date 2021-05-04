@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Group: <b>{{group.title}}</b></h1>
+<div mat-dialog-content>
+  Group Members
+  <div style="margin-top: 1.5em" *ngFor="let frd of group.members;index as i">
+    <div style="display: flex;">
+      <hy-avatar [src]="frd?.picture"></hy-avatar>
+      <div style="margin: 0.5em 1em"><b>{{frd.name}}</b></div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions style="margin-top: 2em; display: flex; justify-content: space-between">
+  <button mat-button (click)="onNoClick()">close</button>
+<!--  <button mat-raised-button color="accent" (click)="onAddClicked()" cdkFocusInitial>Add</button>-->
+</div>

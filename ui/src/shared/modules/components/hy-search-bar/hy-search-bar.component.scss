@@ -1,0 +1,12 @@
+@import "src/assets/themes/hy-variables";
+
+.hy-search-bar {
+  position: -webkit-sticky;
+  position: sticky;
+  background-color: transparent;
+  top: 0.4em;
+
+  .hy-search-field {
+    width: 100%;
+  }
+}

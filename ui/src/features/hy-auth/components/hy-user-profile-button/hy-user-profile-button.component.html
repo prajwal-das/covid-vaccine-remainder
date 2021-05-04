@@ -1,0 +1,20 @@
+<hy-avatar marginTop="0.5em" class="hy-userprofile" [matMenuTriggerFor]="userProfile" radius="3em" color="accent"
+           [src]="userInfo?.photoURL"
+           alt="login"></hy-avatar>
+
+
+<mat-menu #userProfile="matMenu">
+  <ng-container *ngIf="authService.isLoggedIn">
+    <div class="hy-user-profile">
+      <hy-avatar radius="4em" [src]="userInfo?.photoURL"></hy-avatar><br>
+      <mat-card-title color="primary" class="username top-gap">{{userInfo?.displayName}}</mat-card-title><br>
+      <mat-card-subtitle class="top-gap">{{userInfo?.email}}</mat-card-subtitle>
+      <mat-divider></mat-divider>
+      <button class="top-gap" mat-stroked-button color="accent" (click)="signOut()">SignOut</button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!authService.isLoggedIn">
+    <button mat-menu-item (click)="signInWithGoogle()">SignIn with Google</button>
+  </ng-container>
+</mat-menu>

@@ -1,0 +1,13 @@
+<div class="hy-search-bar">
+  <ng-container *ngTemplateOutlet="searchField"></ng-container>
+</div>
+
+<ng-template #searchField>
+  <mat-form-field class="hy-search-field" appearance="fill">
+    <span matPrefix class="hy-cursor-point"><mat-icon (click)="onSearch()"
+                                                      style="margin-right: 1em">location_searching</mat-icon> &nbsp;</span>
+    <input matInput type="text" (keyup.enter)="onSearch()" placeholder="Search " [(ngModel)]="search">
+    <mat-icon class="hy-cursor-point" matSuffix *ngIf="search" aria-hidden="false" (click)="onSearchCancel()">close
+    </mat-icon>
+  </mat-form-field>
+</ng-template>

@@ -1,0 +1,43 @@
+$light-text: #ffffff;
+$light-primary-text: $light-text;
+$light-accent-text: rgba($light-primary-text, 0.7);
+$light-disabled-text: rgba($light-primary-text, 0.5);
+$light-dividers: rgba($light-primary-text, 0.12);
+$light-focused: rgba($light-primary-text, 0.12);
+
+$light-bg-alpha-4: rgba(#ffffff, 0.04);
+$light-bg-alpha-12: rgba(#ffffff, 0.12);
+
+$light-background: #ffffff;
+$light-bg-darker-2: darken($light-background, 1.5%);
+$light-bg-darker-5: darken($light-background, 5%);
+$light-bg-darker-10: darken($light-background, 10%);
+$light-bg-darker-20: darken($light-background, 20%);
+$light-bg-darker-30: darken($light-background, 30%);
+$light-bg-lighter-5: lighten($light-background, 5%);
+
+
+$dark-text: #2f2f2f;
+$dark-primary-text: rgba($dark-text, 0.87);
+$dark-accent-text: rgba($dark-primary-text, 0.54);
+$dark-disabled-text: rgba($dark-primary-text, 0.38);
+$dark-dividers: rgba($dark-primary-text, 0.12);
+$dark-focused: rgba($dark-primary-text, 0.12);
+
+$dark-bg-tooltip: lighten(#2d2d2d, 20%);
+$dark-bg-alpha-4: rgba(#2d2d2d, 0.04);
+$dark-bg-alpha-12: rgba(#2d2d2d, 0.12);
+$dark-bg-alpha-20: rgba(#2d2d2d, 0.20);
+
+$dark-background: #2d2d2d;
+$dark-bg-lighter-5: lighten($dark-background, 5%);
+$dark-bg-lighter-10: lighten($dark-background, 10%);
+$dark-bg-lighter-20: lighten($dark-background, 20%);
+$dark-bg-lighter-30: lighten($dark-background, 30%);
+
+$hy-border-color: $dark-bg-alpha-20;
+$accent-color: #f35a00;
+$primary-color: #00b3a3;
+$primary-color-light: #b3e8e3;
+
+

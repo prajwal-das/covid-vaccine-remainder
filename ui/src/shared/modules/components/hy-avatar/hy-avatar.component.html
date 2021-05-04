@@ -1,0 +1,8 @@
+<ng-container *ngIf="src">
+  <img [ngStyle]="{ height: radius, width: radius, marginTop: marginTop}" class="hy-avatar" [src]="src">
+</ng-container>
+<ng-container *ngIf="!src">
+  <a mat-icon-button mat-flat-button [ngStyle]="{width: radius, height: radius, lineHeight: radius}" [color]="color">
+    <mat-icon>{{alt}}</mat-icon>
+  </a>
+</ng-container>

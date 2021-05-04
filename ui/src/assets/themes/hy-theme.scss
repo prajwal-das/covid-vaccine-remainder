@@ -1,0 +1,225 @@
+@import "hy-variables";
+@import '../../../node_modules/@angular/material/theming';
+@import url('https://fonts.googleapis.com/css?family=Material+Icons+Round');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600');
+
+$fontConfig: (
+  display-4: mat-typography-level(7em, 7em, 500, 'Quicksand', -0.0134em),
+  display-3: mat-typography-level(3.5em, 3.5em, 500, 'Quicksand', -0.0089em),
+  display-2: mat-typography-level(2.8125em, 3em, 500, 'Quicksand', 0.0000em),
+  display-1: mat-typography-level(2.125em, 2.5em, 500, 'Quicksand', 0.0074em),
+  headline: mat-typography-level(1.5em, 2em, 500, 'Quicksand', 0.0000em),
+  title: mat-typography-level(1.25em, 2em, 500, 'Quicksand', 0.0075em),
+  subheading-2: mat-typography-level(1em, 1.75em, 500, 'Quicksand', 0.0094em),
+  subheading-1: mat-typography-level(0.9375em, 1.5em, 500, 'Quicksand', 0.0067em),
+  body-2: mat-typography-level(0.875em, 1.5em, 500, 'Quicksand', 0.0179em),
+  body-1: mat-typography-level(0.875em, 1.25em, 500, 'Quicksand', 0.0179em),
+  button: mat-typography-level(0.875em, 0.875em, 600, 'Quicksand', 0.0893em),
+  caption: mat-typography-level(0.875em, 1.25em, 500, 'Quicksand', 0.0333em),
+  input: mat-typography-level(inherit, 1.125, 500, 'Quicksand', 0.09375em)
+);
+@include mat-core($fontConfig);
+
+
+$mat-light-theme-foreground: (
+  base: black,
+  divider: $dark-dividers,
+  dividers: $dark-dividers,
+  disabled: $dark-disabled-text,
+  disabled-button: rgba($dark-text, 0.26),
+  disabled-text: $dark-disabled-text,
+  elevation: black,
+  secondary-text: $dark-accent-text,
+  hint-text: $dark-disabled-text,
+  accent-text: $dark-accent-text,
+  icon: $dark-accent-text,
+  icons: $dark-accent-text,
+  text: $dark-primary-text,
+  slider-min: $dark-primary-text,
+  slider-off: rgba($dark-text, 0.26),
+  slider-off-active: $dark-disabled-text,
+);
+
+$mat-light-theme-background: (
+  background: $light-bg-darker-2,
+  status-bar: $light-bg-darker-20,
+  app-bar: $light-bg-darker-5,
+  hover: $dark-bg-alpha-4,
+  card: $light-bg-lighter-5,
+  dialog: $light-bg-lighter-5,
+  tooltip: $dark-bg-tooltip,
+  disabled-button: $dark-bg-alpha-12,
+  raised-button: $light-bg-lighter-5,
+  focused-button: $dark-focused,
+  selected-button: $light-bg-darker-20,
+  selected-disabled-button: $light-bg-darker-30,
+  disabled-button-toggle: $light-bg-darker-10,
+  unselected-chip: $light-bg-darker-10,
+  disabled-list-option: $light-bg-darker-10,
+);
+
+/* Light Theme END */
+
+body {
+  --primary-color: $primary-color;
+  --primary-lighter-color: $primary-color-light;
+  --primary-darker-color: #009a88;
+  --text-primary-color: #{$light-primary-text};
+  --text-primary-lighter-color: #{$dark-primary-text};
+  --text-primary-darker-color: #{$light-primary-text};
+}
+
+$mat-primary: (
+  main: $primary-color,
+  lighter: $primary-color-light,
+  darker: #009a88,
+  200: $primary-color,
+  contrast : (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  )
+);
+$theme-primary: mat-palette($mat-primary, main, lighter, darker);
+
+body {
+  --accent-color: $accent-color;
+  --accent-lighter-color: #fbceb3;
+  --accent-darker-color: #ed3f00;
+  --text-accent-color: #{$light-primary-text};
+  --text-accent-lighter-color: #{$dark-primary-text};
+  --text-accent-darker-color: #{$light-primary-text};
+}
+
+$mat-accent: (
+  main: $accent-color,
+  lighter: #fbceb3,
+  darker: #ed3f00,
+  200: $accent-color,
+  contrast : (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  )
+);
+$theme-accent: mat-palette($mat-accent, main, lighter, darker);
+
+body {
+  --warn-color: #ff4242;
+  --warn-lighter-color: #ffc6c6;
+  --warn-darker-color: #ff2b2b;
+  --text-warn-color: #{$light-primary-text};
+  --text-warn-lighter-color: #{$dark-primary-text};
+  --text-warn-darker-color: #{$light-primary-text};
+}
+
+$mat-warn: (
+  main: #ff4242,
+  lighter: #ffc6c6,
+  darker: #ff2b2b,
+  200: #ff4242,
+  contrast : (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  )
+);
+$theme-warn: mat-palette($mat-warn, main, lighter, darker);
+
+$dart-theme-color: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
+$light-theme-color: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
+
+@include angular-material-theme($light-theme-color);
+
+
+.light-theme {
+  @include angular-material-theme($light-theme-color);
+
+
+  .mat-drawer, .hy-search-bar {
+    background: $light-bg-darker-2;
+  }
+
+  .mat-toolbar {
+    background: $light-bg-darker-2;
+  }
+
+  .hy-discussion-card .hy-tags-chip {
+    color: $dark-text !important;
+    background-color: $primary-color-light !important;
+    font-size: 12px !important;
+  }
+
+  .hy-p-details {
+    padding-left: 1em;
+    color: $dark-text;
+
+    .email {
+      margin: 0.5em 0;
+    }
+  }
+
+
+  .mat-standard-chip {
+    padding: 0.8em .5em !important;
+    min-height: 0em !important;
+  }
+
+  .mat-toolbar {
+    font-size: 0.875em !important;
+    position: -webkit-sticky;
+    position: sticky;
+    height: 5.3em !important;
+    top: 0;
+    z-index: 1;
+  }
+
+  .mat-paginator {
+    border-radius: 20em;
+    border: 1px solid $primary-color-light !important;
+
+    .mat-paginator-container {
+      min-height: 0px;
+    }
+  }
+
+  .mat-icon-button {
+    line-height: 35px !important;
+  }
+
+  .material-icons {
+    font-size: 1.5em;
+    font-family: 'Material Icons Round', 'Material Icons', serif;
+
+    .mat-badge-content {
+      font-family: 'Quicksand', sans-serif;
+    }
+  }
+}
+
+@mixin button-alignment() {
+  border-radius: 10em !important;
+  .mat-icon {
+    vertical-align: top;
+    font-size: 1.60em;
+  }
+}
+
+button {
+  &.mat-button,
+  &.mat-stroked-button,
+  &.mat-flat-button,
+  &.mat-raised-button {
+    @include button-alignment();
+  }
+}
+
+a {
+  &.mat-button,
+  &.mat-raised-button {
+    @include button-alignment();
+  }
+}
+
+
+

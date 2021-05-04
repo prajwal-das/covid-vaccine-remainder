@@ -1,0 +1,31 @@
+.container {
+  overflow: auto;
+}
+
+.scrolling-list {
+  overflow: auto;
+  max-height: 53vh;
+  min-height: 53vh;
+
+  .chat-msg {
+    display: flex;
+    justify-content: right;
+
+    .chat-content {
+      margin: 1em;
+      max-width: 70%;
+      padding: 0.5em 1em;
+      border-radius: 10px;
+      border: 0.5px #dbdada solid;
+      background-color: #d3fffa;
+    }
+
+    .filler{
+      flex-grow: 1;
+    }
+  }
+}
+
+.text-area-msg {
+  width: 87%;
+}

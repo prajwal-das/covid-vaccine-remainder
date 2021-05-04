@@ -1,0 +1,28 @@
+<mat-card class="friend-card">
+  <mat-card-header>
+    <div style="width:100%;justify-content:space-between; display: flex; ">
+      <div style="display: flex;">
+        <div class="avatar">
+          <hy-avatar [src]="friend?.picture"></hy-avatar>
+        </div>
+        <div style="margin-top: 0.5em">
+          {{friend.name ? friend.name : friend.email}}
+        </div>
+      </div>
+
+      <div *ngIf="friendRequest && 'REQUEST_PENDING' == friend.friendsStatus; else sendRequest">
+        <button (click)="acceptFriendRequest()" mat-stroked-button color="primary">Accept Request</button>
+      </div>
+
+      <div *ngIf="'ACCEPTED' == friend.friendsStatus">
+        <button mat-stroked-button color="primary">Friends</button>
+      </div>
+
+      <ng-template #sendRequest>
+        <div *ngIf="!friend.friendsStatus">
+          <button (click)="sendFriendRequest()" mat-stroked-button color="primary">Send Request</button>
+        </div>
+      </ng-template>
+    </div>
+  </mat-card-header>
+</mat-card>

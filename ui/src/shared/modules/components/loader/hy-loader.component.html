@@ -1,0 +1,11 @@
+<div *ngIf="isLoading | async" class="overlay">
+  <div *ngIf="showLoading | async" class="spinner">
+    <div class="loader-wrap">
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="info">The request is been processing</div>
+  </div>
+</div>

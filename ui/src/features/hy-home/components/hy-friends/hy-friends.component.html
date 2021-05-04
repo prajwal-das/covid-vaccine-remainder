@@ -1,0 +1,29 @@
+<div>
+  <h2>Connections</h2>
+  <div class="actions">
+    <button mat-stroked-button color="primary" (click)="getFriends()">My Friends</button>
+    <button mat-stroked-button (click)="toggleSearch()">Find Friends</button>
+    <button mat-stroked-button (click)="getAllFriendRequests()">Friend Requests</button>
+    <button style="margin-left: 1em" class="hy-left-btns" mat-stroked-button routerLink="/friends/graph" color="accent">
+      <mat-icon class="icon"  aria-hidden="false">analytics</mat-icon>
+      Friends Analytics
+    </button>
+
+    <br>
+    <br>
+
+    <mat-form-field *ngIf="!hideSearch" style="width: 30em" appearance="outline">
+      <input [(ngModel)]="key" (keydown.enter)="getAllFriends()" matInput placeholder="search by name">
+      <mat-icon (click)="getAllFriends()" matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="friends-list">
+    <div *ngFor="let frd of friends">
+      <hy-friend-card [friendRequest]="friendRequest" [friend]="frd"></hy-friend-card>
+    </div>
+
+    <div *ngIf="!friends.length">
+      No Friend{{!friendRequest?'s ': ' Requests'}}
+    </div>
+  </div>
+</div>

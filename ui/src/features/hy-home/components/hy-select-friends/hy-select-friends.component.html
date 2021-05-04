@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Choose Friends</h1>
+<div mat-dialog-content>
+  <div style="margin-top: 1.5em" *ngFor="let frd of friends;index as i">
+    <mat-checkbox class="example-margin" [(ngModel)]="selectedFriends[i]">
+      <div style="display: flex;">
+        <hy-avatar [src]="frd?.picture"></hy-avatar>
+        <div style="margin: 0.5em 1em">{{frd.name}}</div>
+      </div>
+    </mat-checkbox>
+  </div>
+</div>
+<div mat-dialog-actions style="margin-top: 2em; display: flex; justify-content: space-between">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="accent" (click)="onAddClicked()" cdkFocusInitial>Add</button>
+</div>

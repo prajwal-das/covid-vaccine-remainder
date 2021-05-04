@@ -1,0 +1,18 @@
+server:
+  port: 8080
+# DB_URL=localhost:5432/boot;DB_PASSWORD=admin;DB_USERNAME=admin
+spring:
+  jpa:
+    generate-ddl: true
+    hibernate.ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: "jdbc:postgresql://${DB_URL}"
+    username: ${DB_PASSWORD}
+    password: ${DB_USERNAME}
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB

@@ -1,0 +1,32 @@
+@import 'hy-variables';
+
+.hy-side-content {
+  margin-top: 1em;
+  width: 100%;
+
+  .hy-top-discussions {
+    width: 100%;
+
+    .hy-left-btns {
+      width: 100%;
+      text-align: left;
+
+      .icon {
+        font-size: 1.3em;
+        padding-right: 0.6em;
+      }
+    }
+
+    .hy-cat-divider {
+      margin: 2em 0;
+    }
+  }
+
+  .hy-about-wrapper {
+    margin-top: 2em;
+  }
+}
+
+.side-link-active {
+  background-color: #d8fffe;
+}

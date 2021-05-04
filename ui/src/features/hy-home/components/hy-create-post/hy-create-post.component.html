@@ -1,0 +1,46 @@
+<div>
+  <h2>Create Post</h2>
+  <br>
+  <br>
+  <br>
+  <div>
+
+    <div class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="post.title">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <textarea [(ngModel)]="post.content" matInput placeholder="Ex. This is my post "></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <div class="file-upload">
+          <mat-toolbar>
+            <!-- Display files names -->
+            <input matInput [(ngModel)]="fileAttr" readonly name="name" />
+
+            <!-- Browse Button -->
+            <button mat-flat-button color="primary">
+              Browse File
+            </button>
+          </mat-toolbar>
+
+          <!-- Fetch selected filed on change -->
+          <input type="file"  #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile" accept="image/*" />
+        </div>
+      </mat-form-field>
+      <br/>
+      <br/>
+
+      <a mat-raised-button color="accent" (click)="createPost()">
+        <mat-icon class="icon" aria-hidden="false">post_add</mat-icon>
+        Create Post
+      </a>
+    </div>
+
+
+  </div>
+</div>

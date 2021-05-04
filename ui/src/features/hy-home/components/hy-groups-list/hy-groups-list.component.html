@@ -1,0 +1,28 @@
+<div>
+  <div style="display: flex; justify-content: space-between">
+    <h3>Groups</h3>
+    <button (click)="groupSelected(currGroup)" mat-button color="primary">
+      <mat-icon >refresh</mat-icon>
+    </button>
+  </div>
+
+  <hr style=" border-top: 2px solid #c6c6c6;"/>
+  <ng-container *ngFor="let grp of groups">
+    <div style="display: flex; justify-content: space-between;margin: 0.1em; border-radius: 20px"
+         [ngStyle]="{'background-color': (currGroup.id===grp.id) ? '#c5fff3' : '#ffffff'}">
+      <a (click)="groupSelected(grp)" style="width: 100%;text-align: left" mat-button color="primary">
+        <mat-icon class="icon" aria-hidden="false">forum</mat-icon>
+        {{grp.title}}
+      </a>
+
+      <a (click)="inviteFriends(grp)" mat-icon-button color="primary">
+        <mat-icon class="icon" aria-hidden="false">add</mat-icon>
+      </a>
+
+      <a (click)="groupInfo(grp)" style="margin-left:0.5em" mat-icon-button color="primary">
+        <mat-icon class="icon" aria-hidden="false">info</mat-icon>
+      </a>
+
+    </div>
+  </ng-container>
+</div>
