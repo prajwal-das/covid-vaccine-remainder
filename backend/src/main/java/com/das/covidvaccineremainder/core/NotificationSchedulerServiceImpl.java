@@ -6,15 +6,23 @@
 */
 package com.das.covidvaccineremainder.core;
 
+import com.das.covidvaccineremainder.SchedulerConstants;
 import com.das.covidvaccineremainder.message.CowinSlotResponse;
 import com.das.covidvaccineremainder.message.parse.Center;
 import com.das.covidvaccineremainder.message.parse.Session;
-import com.das.covidvaccineremainder.model.AlertRequestQueue;
+import com.das.covidvaccineremainder.model.Reminders;
 import com.das.covidvaccineremainder.prototype.APIExchange;
+import com.das.covidvaccineremainder.repositories.RemindersDAO;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -23,7 +31,8 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class NotificationScheduler
+@Data
+public class NotificationSchedulerServiceImpl
 {
 
     @Autowired
@@ -32,7 +41,31 @@ public class NotificationScheduler
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public int checkSlotAvailability (AlertRequestQueue alertRequestQueue)
+    @Autowired
+    private RemindersDAO remindersDAO;
+
+    // runs every 60 seconds
+    @Scheduled(fixedRate = 60000)
+    public void processAlertRequests () throws UnsupportedEncodingException
+    {
+
+        Pageable pageable =
+            PageRequest.of(0, SchedulerConstants.ALERT_REQUEST_FETCH_SIZE);
+
+        Page<Reminders> remindersPage =
+            remindersDAO.fetchAll(SchedulerConstants.MAX_ALERTS, pageable);
+
+        if (remindersPage.getContent() != null) {
+            System.out.println("Processing request for size: " + remindersPage.getContent().size());
+            List<Reminders> remindersList = remindersPage.getContent();
+            for (Reminders r : remindersList) {
+                checkSlotAvailability(r);
+            }
+        }
+    }
+
+    @Transactional
+    public boolean checkSlotAvailability (Reminders reminders)
         throws UnsupportedEncodingException
     {
 
@@ -40,10 +73,10 @@ public class NotificationScheduler
         List<String> centers = null;
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String strDate = formatter.format(new Date());
-        // send notification max 4 times
-        if (alertRequestQueue.getEmailNotifyCount() < 5) {
+        // send notification max 50 times for now
+        if (reminders.getEmailNotifyCount() < SchedulerConstants.MAX_ALERTS) {
 
-            String pinCodes = alertRequestQueue.getPinCodes();
+            String pinCodes = reminders.getPinCodes();
             String[] pinCodeArray = pinCodes.split(",");
 
             for (String pin : pinCodeArray) {
@@ -51,24 +84,31 @@ public class NotificationScheduler
 
                 // check slot available centers
                 if (null != cowinSlotResponse) {
-                    centers =
-                        filterCentersHavingSlots(cowinSlotResponse.getCenters(),
-                            alertRequestQueue.getAgeGroup()
-                        );
+                    centers = filterCentersHavingSlots(
+                        cowinSlotResponse.getCenters(),
+                        reminders.getAgeGroup()
+                    );
                 }
             }
 
             //send email alert
             if (centers != null && centers.size() > 0) {
-                sendEmail(alertRequestQueue.getEmailAddress(),
-                    parseCenters(centers)
-                );
+                sendEmail(reminders.getEmailAddress(), parseCenters(centers));
             }
+            else {
+                sendEmail(reminders.getEmailAddress(), "No slots available for the next 7 days across all centers. Will keep you notified.");
+            }
+
+            System.out.println(
+                "Email Notification sent to: " + reminders.getEmailAddress()
+                    + " for pin codes: " + reminders.getPinCodes());
+
             // increment notification sent count
-            return alertRequestQueue.getEmailNotifyCount() + 1;
+            reminders.setEmailNotifyCount(reminders.getEmailNotifyCount() + 1);
+            remindersDAO.saveAndFlush(reminders);
         }
 
-        return alertRequestQueue.getEmailNotifyCount();
+        return true;
     }
 
     private List<String> filterCentersHavingSlots (
