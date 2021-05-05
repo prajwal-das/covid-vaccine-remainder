@@ -6,10 +6,11 @@
 */
 package com.das.covidvaccineremainder.core;
 
+import com.das.covidvaccineremainder.SchedulerConstants;
 import com.das.covidvaccineremainder.message.APIResponse;
 import com.das.covidvaccineremainder.message.EnqueueRequest;
 import com.das.covidvaccineremainder.prototype.EnqueueService;
-import com.das.covidvaccineremainder.repositories.Reminders;
+import com.das.covidvaccineremainder.model.Reminders;
 import com.das.covidvaccineremainder.repositories.RemindersDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,7 +60,7 @@ public class EnqueueServiceImpl implements EnqueueService
             reminders.setEmailAddress(enqueueRequest.getEmail());
             reminders.setEmailNotifyCount(1);
         }
-        else if (reminders.getEmailNotifyCount() >= 5) {
+        else if (reminders.getEmailNotifyCount() >= SchedulerConstants.MAX_ALERTS) {
             // not accepting any more request after 4 notifications already sent
             return false;
         }
